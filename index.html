@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html ng-app="PMvsPM">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />	
+	<title>PMvsPM</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" type="text/css" href="style/jquery.multiscroll.css" />		
+	
+	<link rel="stylesheet" type="text/css" href="style/semantic.min.css">
+	<link rel="stylesheet" href="style/chartist.min.css">
+    
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+	<script type="text/javascript" src="js/scrolling.js"></script>
+	<script type="text/javascript" src="js/jquery.easings.min.js"></script>
+	<script type="text/javascript" src="js/jquery.multiscroll.js"></script>
+    <script src="js/semantic.min.js"></script>
+	<script src="js/js-xlsx.js"></script>
+
+	<script type="text/javascript">
+	 $(document).ready(function() {
+            $('#myContainer').multiscroll({
+            	sectionsColor: ['#000', '#000', '#000', '#000'],
+            });
+     });
+	</script>
+   </head>
+
+<body ng-controller="PMCtrl">
+
+<header class="myHeader">
+     <div class="rightHeader">
+     	<h3 class="first"><b>{{PM.curr2.name}}</b></h3>
+     	<h3 class="second">מספר ממשלה {{PM.number2}}</h3><h3 class="second second2">{{PM.curr2.firstYear}} - {{PM.curr2.lastYear}}</h3>
+     </div>
+     <div class="leftHeader">
+     	<h3 class="first"><b>{{PM.curr.name}}</b></h3>
+     	<h3 class="second">מספר ממשלה {{PM.number}}</h3><h3 class="second second2">{{PM.curr.firstYear}}  - {{PM.curr.lastYear}}</h3>
+     </div>
+</header>
+
+<section class="myPickSection">
+	
+</section>
+<div class="x"></div>
+
+<div class="cont">
+    <h1 class="pickTitle">{{pick.pick}}</h1>
+    <div class="two-half">
+    	<div class="half-left">
+             <div class="graph1" ng-style="{'width': + num1.num1 + '%'}">{{num1.num1}}%</div>
+             <div class="graph3"></div>
+             
+    	</div>
+    	<div class="half-right" >
+    		 <div class="graph2" ng-style="{'width': + num2.num2 + '%'}">{{num2.num2}}%</div>
+    		 <div class="graph4"></div>
+    		
+    	</div>
+    	 <div class="explain">{{pick.desc}}</div>
+    </div>
+</div>
+<div id="myContainer" >
+    
+    <div class="middle" >
+       
+		
+     
+       <!-- all categories -->
+			<div class="category-title title1" ng-click="myCategory($event)">צמיחה</div>
+			<div class="category-title title2"  ng-click="myCategory($event)">אבטלה</div>
+			<div class="category-title title3"  ng-click="myCategory($event)">יוקר המחיה</div>
+			<div class="category-title title4"  ng-click="myCategory($event)">שכר ריאלי</div>
+			<div class="category-title title5"  ng-click="myCategory($event)">מחירי דיור</div>
+		<!-- end -->
+    	
+       
+   </div>
+		<div class="ms-left">
+			<div class="ms-section" id="left1">
+				<div class="PMheadLeft" id="leftHead">
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+				</div>
+			</div>
+
+			<div class="ms-section" id="left2">
+					<div class="PMheadLeft2" id="leftHead">
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					
+				</div>
+			</div>
+
+			<div class="ms-section" id="left3">
+					<div class="PMheadLeft3" id="leftHead">
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					
+				</div>
+			</div>
+
+			<div class="ms-section" id="left4">
+				<div class="PMheadLeft4" id="leftHead">
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					
+				</div>
+			</div>
+
+			
+
+			
+		</div>
+		
+		<div class="ms-right">
+			<div class="ms-section" id="right1">
+				<div class="PMheadRight" >
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+				</div>
+			</div>
+
+			<div class="ms-section" id="right2">
+				<div class="PMheadRight2">
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+				</div>
+			</div>
+
+			<div class="ms-section" id="right3">
+				<div class="PMheadRight3">
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+				</div>
+			</div>
+
+			<div class="ms-section" id="right4">
+				<div class="PMheadRight4" >
+					<div class="category1 first" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+					<div class="category1" ng-click="myPick($event)"></div>
+				</div>
+			</div>
+
+			
+
+			
+		</div>
+		<button class="btn btn-default my-btn" onclick="window.location='https://www.facebook.com/sharer/sharer.php?u=http%3A//www.breakpoint.xyz/pm';">שלח</button>
+
+</div>
+
+   
+    <script src="js/angular.min.js"></script>
+    <script src="js/PM.js"></script>
+    <script src="js/chartist.min.js"></script>
+    <script>
+	new Chartist.Line('.ct-chart', {
+  labels: [1, 2, 3, 4, 5, 6, 7, 8],
+  series: [
+    [1, 2, 3, 8, 1, 8, 2, 5]
+  ]
+}, {
+  high: 8,
+  low: 0,
+  showArea: true,
+  showLine: true,
+  showPoint: false,
+  fullWidth: true,
+  axisX: {
+    showLabel: false,
+    showGrid: false
+  },
+  axisY: {
+    showLabel: false,
+    showGrid: false,
+  },
+
+  width: '100%',
+  height: '150%'
+
+
+});
+
+	</script>
+<link rel="stylesheet" type="text/css" href="style/examples.css" />
+</body>
+</html>
